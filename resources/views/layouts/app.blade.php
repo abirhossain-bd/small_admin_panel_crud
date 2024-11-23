@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="images/favicon.ico" type="image/ico" />
 
-    <title>Gentelella Alela!</title>
+    <title>Dashboard</title>
 
     <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
     <!-- Font Awesome -->

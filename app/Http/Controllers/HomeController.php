@@ -9,9 +9,7 @@ class HomeController extends Controller
 {
 
     public function index(){
-        if (!Auth::user()) {
-            return redirect()->route('login');
-        }
+    
         return view('dashboard.home');
     }
 }

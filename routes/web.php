@@ -36,15 +36,21 @@ Route::post('/user/login',[LoginController::class,'login'])->name('user.login');
 Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 
 
-Route::get('/home',[HomeController::class,'index'])->name('home');
 
-Route::prefix('/user/')->group(function(){
-    Route::get('list',[UserController::class,'index'])->name('user.list');
-    Route::get('create',[UserController::class,'create'])->name('user.create');
-    Route::post('create',[UserController::class,'store'])->name('user.create');
-    Route::get('edit/{id}',[UserController::class,'edit'])->name('user.edit');
-    Route::post('update/{id}',[UserController::class,'update'])->name('user.update');
-    Route::get('delete/{id}',[UserController::class,'destroy'])->name('user.delete');
-    Route::get('show/{id}',[UserController::class,'show']);
+// Route::middleware('auth')->group(function(){  {{{{{//default set kora thake ei middleware,,}}}}}
 
+Route::middleware('user.auth')->group(function(){   //{{{{{ manually set kora middleware  }}}}}
+    Route::get('/home',[HomeController::class,'index'])->name('home');
+
+    Route::prefix('/user/')->group(function(){
+        Route::get('list',[UserController::class,'index'])->name('user.list');
+        Route::get('create',[UserController::class,'create'])->name('user.create');
+        Route::post('create',[UserController::class,'store'])->name('user.create');
+        Route::get('edit/{id}',[UserController::class,'edit'])->name('user.edit');
+        Route::post('update/i{d}',[UserController::class,'update'])->name('user.update');
+        Route::get('delete/{id}',[UserController::class,'destroy'])->name('user.delete');
+        Route::get('show/{id}',[UserController::class,'show']);
+
+    });
 });
+

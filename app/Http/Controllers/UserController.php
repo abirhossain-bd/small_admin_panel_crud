@@ -14,9 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        if (!Auth::user()) {
-            return redirect()->route('login');
-        }
+
         $users = User::all();
         return view('dashboard.user.list',compact('users'));
     }
@@ -26,9 +24,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        if (!Auth::user()) {
-            return redirect()->route('login');
-        }
+
         return view('dashboard.user.create');
     }
 
@@ -37,9 +33,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        if (!Auth::user()) {
-            return redirect()->route('login');
-        }
         $request->validate([
             'first_name' => 'required|min:2|max:20',
             'last_name' => 'required|min:2|max:20',
@@ -73,9 +66,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        if (!Auth::user()) {
-            return redirect()->route('login');
-        }
+
         $user = User::find($id);
         return view('dashboard.user.edit',compact('user'));
     }
@@ -85,9 +76,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        if (!Auth::user()) {
-            return redirect()->route('login');
-        }
+
         $request->validate([
             'first_name' => 'required|min:2|max:20',
             'last_name' => 'required|min:2|max:20',
@@ -110,9 +99,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        if (!Auth::user()) {
-            return redirect()->route('login');
-        }
+        
         User::find($id)->delete();
         return back()->with('success','User deleted successfully');
     }
